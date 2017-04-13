@@ -20,7 +20,7 @@ variable "aws_region" {}
 
 
 /**
- * Security Groups
+ * Security Groups/Graylog
  */
 
 provider "aws" {
