@@ -5,7 +5,7 @@
 
 variable "sg_type" {
   description = "The type of traffic the security group is enabling."
-  default     = "ssh"
+  default     = "graylog"
 }
 
 variable "vpc_id" {
@@ -44,7 +44,7 @@ resource "aws_security_group" "main_security_group" {
     name   = "${format("%s-%s-%s", var.organization, var.environment, var.sg_type)}"
     vpc_id = "${var.vpc_id}"
 
-   // allow traffic for TCP 12900
+ // allow traffic for TCP 12900
     ingress {
         from_port = 12900
         to_port = 12900
@@ -52,7 +52,7 @@ resource "aws_security_group" "main_security_group" {
         cidr_blocks = ["${var.source_cidr_block}"]
     }
 
-    // allow traffic for TCP 9000
+  // allow traffic for TCP 9000
     ingress {
         from_port = 9000
         to_port = 9000
