@@ -12,7 +12,7 @@ variable "vpc_id" {
 }
 
 variable "source_cidr_blocks" {
-  description = "A list of source CIDR blocks to allow traffic from"
+  description = "A source CIDR blocks to allow traffic from"
 }
 
 variable "organization" {
