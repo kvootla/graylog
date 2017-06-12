@@ -38,7 +38,6 @@ resource "aws_security_group" "main_security_group" {
     to_port         = 12900
     protocol        = "tcp"
     cidr_blocks     = ["${var.source_cidr_blocks}"]
-    self            = "${var.self_ingress}"
   }
 
   // allow traffic for TCP 9000
@@ -47,7 +46,6 @@ resource "aws_security_group" "main_security_group" {
     to_port         = 9000
     protocol        = "tcp"
     cidr_blocks     = ["${var.source_cidr_blocks}"]
-    self            = "${var.self_ingress}"
   }
 
   egress {
