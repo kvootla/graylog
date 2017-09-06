@@ -24,7 +24,22 @@ echo "trigger job is completed successfully"'''
     }
     stage('Deploying') {
       steps {
-        git(url: 'https://github.com/kvootla/graylog.git', branch: 'graylog-78381', changelog: true)
+        parallel(
+          "Deploying": {
+            git(url: 'https://github.com/kvootla/graylog.git', branch: 'graylog-78381', changelog: true)
+            
+          },
+          "Staging": {
+            sleep 30
+            
+          }
+        )
+      }
+    }
+    stage('Testing') {
+      steps {
+        sh '''date
+echo "test job is completed successfully"'''
       }
     }
   }
