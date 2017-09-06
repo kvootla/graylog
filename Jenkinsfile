@@ -13,8 +13,18 @@ echo "graylog job triggering to build"'''
             sh '''date 
 echo "Successfully triggering the graylog build"'''
             
+          },
+          "Staging ": {
+            sh '''date
+echo "trigger job is completed successfully"'''
+            
           }
         )
+      }
+    }
+    stage('Deploying') {
+      steps {
+        git(url: 'https://github.com/kvootla/graylog.git', branch: 'graylog-78381', changelog: true)
       }
     }
   }
