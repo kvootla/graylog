@@ -18,6 +18,10 @@ echo "Successfully triggering the graylog build"'''
             sh '''date
 echo "trigger job is completed successfully"'''
             
+          },
+          "Developing": {
+            sleep 10
+            
           }
         )
       }
@@ -32,14 +36,33 @@ echo "trigger job is completed successfully"'''
           "Staging": {
             sleep 30
             
+          },
+          "Developing": {
+            sleep 10
+            
           }
         )
       }
     }
     stage('Testing') {
       steps {
-        sh '''date
+        parallel(
+          "Testing": {
+            sh '''date
 echo "test job is completed successfully"'''
+            
+          },
+          "Staging ": {
+            sleep 10
+            
+          }
+        )
+      }
+    }
+    stage('Release') {
+      steps {
+        sh '''date
+echo "Release job is completed successfully"'''
       }
     }
   }
