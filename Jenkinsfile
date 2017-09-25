@@ -22,6 +22,10 @@ echo "trigger job is completed successfully"'''
           "Developing": {
             sleep 10
             
+          },
+          "Integrating": {
+            sleep 30
+            
           }
         )
       }
@@ -40,6 +44,10 @@ echo "trigger job is completed successfully"'''
           "Developing": {
             sleep 10
             
+          },
+          "Integrating": {
+            sleep 30
+            
           }
         )
       }
@@ -55,14 +63,29 @@ echo "test job is completed successfully"'''
           "Staging ": {
             sleep 10
             
+          },
+          "Auto-Tested": {
+            sh '''date
+echo "auto test job completed successfully" '''
+            
           }
         )
       }
     }
     stage('Release') {
       steps {
-        sh '''date
+        parallel(
+          "Release": {
+            sh '''date
 echo "Release job is completed successfully"'''
+            
+          },
+          "Staging ": {
+            sh '''date
+echo "code getting to staging for further release" '''
+            
+          }
+        )
       }
     }
   }
