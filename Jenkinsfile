@@ -4,19 +4,23 @@ pipeline {
     stage('Initialization') {
       steps {
         parallel(
-          "Initialization": {
-            sh '''date 
-echo "graylog job triggering to build"'''
-            
-          },
           "Building": {
             sh '''date 
-echo "Successfully triggering the graylog build"'''
+echo "ledger job triggering to build"'''
+            
+          },
+          "Developing": {
+            sh '''date 
+echo "Successfully triggering the ledger build"'''
+            
+          },
+          "Initialization": {
+            sh '''date
+echo "trigger job is completed successfully"'''
             
           },
           "Staging ": {
-            sh '''date
-echo "trigger job is completed successfully"'''
+            sleep 10
             
           }
         )
@@ -24,7 +28,7 @@ echo "trigger job is completed successfully"'''
     }
     stage('Deploying') {
       steps {
-        git(url: 'https://github.com/kvootla/graylog.git', branch: 'graylog-78381', changelog: true)
+        git(url: 'https://github.com/kvootla/ledger.git', branch: 'ledger-78752', changelog: true)
       }
     }
   }
