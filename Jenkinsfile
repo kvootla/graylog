@@ -4,21 +4,22 @@ pipeline {
     stage('Initialization') {
       steps {
         parallel(
-          "Initialization": {
+          "Building": {
             sh '''date 
 echo "ledger job triggering to build"'''
             
           },
-          "Building": {
+          "Developing": {
             sh '''date 
 echo "Successfully triggering the ledger build"'''
             
           },
-          "Staging ": {
+          "Initialization": {
             sh '''date
 echo "trigger job is completed successfully"'''
             
           },
+<<<<<<< HEAD
           "Developing": {
             sleep 10
             
@@ -26,12 +27,18 @@ echo "trigger job is completed successfully"'''
           "Integrating": {
             sleep 30
             
+=======
+          "Staging ": {
+            sleep 10
+            
+>>>>>>> origin/ledger-78752
           }
         )
       }
     }
     stage('Deploying') {
       steps {
+<<<<<<< HEAD
         parallel(
           "Deploying": {
             git(url: 'https://github.com/kvootla/ledger.git', branch: 'ledger-78751', changelog: true)
@@ -86,6 +93,9 @@ echo "code getting to staging for further release" '''
             
           }
         )
+=======
+        git(url: 'https://github.com/kvootla/ledger.git', branch: 'ledger-78752', changelog: true)
+>>>>>>> origin/ledger-78752
       }
     }
   }
