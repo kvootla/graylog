@@ -19,26 +19,20 @@ echo "Successfully triggering the ledger build"'''
 echo "trigger job is completed successfully"'''
             
           },
-<<<<<<< HEAD
           "Developing": {
             sleep 10
-            
           },
           "Integrating": {
             sleep 30
             
-=======
           "Staging ": {
             sleep 10
-            
->>>>>>> origin/ledger-78752
           }
         )
       }
     }
     stage('Deploying') {
       steps {
-<<<<<<< HEAD
         parallel(
           "Deploying": {
             git(url: 'https://github.com/kvootla/ledger.git', branch: 'ledger-78751', changelog: true)
@@ -93,9 +87,6 @@ echo "code getting to staging for further release" '''
             
           }
         )
-=======
-        git(url: 'https://github.com/kvootla/ledger.git', branch: 'ledger-78752', changelog: true)
->>>>>>> origin/ledger-78752
       }
     }
   }
