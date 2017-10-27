@@ -4,28 +4,29 @@ pipeline {
     stage('Initialization') {
       steps {
         parallel(
-          "Initialization": {
+          "Building": {
             sh '''date 
 echo "ledger job triggering to build"'''
             
           },
-          "Building": {
+          "Developing": {
             sh '''date 
 echo "Successfully triggering the ledger build"'''
             
           },
-          "Staging ": {
+          "Initialization": {
             sh '''date
 echo "trigger job is completed successfully"'''
             
           },
           "Developing": {
             sleep 10
-            
           },
           "Integrating": {
             sleep 30
             
+          "Staging ": {
+            sleep 10
           }
         )
       }
